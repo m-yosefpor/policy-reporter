@@ -1,5 +1,83 @@
 # Changelog
 
+# 2.2.3
+* Fix Helm Chart uihost template function.
+
+# 2.2.2
+* Fix Helm Chart `values.yaml`. Cleanup unused default configurations. [[#103](https://github.com/kyverno/policy-reporter-ui/pull/103) by [AndersBennedsgaard](https://github.com/AndersBennedsgaard)]
+
+# 2.2.1
+* Fix Typo in values.yaml [[#102](https://github.com/kyverno/policy-reporter-ui/pull/102) by [christophefromparis](https://github.com/christophefromparis)]
+
+# 2.2.0
+* Policy Reporter UI v1.2.0
+    * New configurations to customize the dashboard by disable PolicyReport- or ClusterPolicyReport information
+
+# 2.1.1
+* Fix KyvernoPlugin Metrics ServiceMonitor Port [[#96](https://github.com/kyverno/policy-reporter-ui/pull/96) by [z0rc](https://github.com/z0rc)]
+* Remove unused Port from KyvernoPlugin Deployment and Service
+
+# 2.1.0
+* KyvernoPlugin v1.1.0
+    * New KyvernoPlugin API - VerifyImages Rules (<a href="https://kyverno.github.io/policy-reporter/guide/06-troubleshooting#readinessprobe-fails" target="_blank">details</a>)
+* Policy Reporter UI v1.1.0
+    * New Kyverno VerifyImages view in Policy Reporter UI
+    * New configurations to disable views (<a href="https://kyverno.github.io/policy-reporter/guide/04-helm-chart-core#configure-views" target="_blank">details</a>)
+
+# 2.0.1
+* Remove NetworkPolicy ingress rule for UI if not enabled
+* Update Policy Reporter UI
+    * Fix: Show PolicyReportResult Properties in Tables
+
+# 2.0.0
+
+## Chart
+* Removed deprecated values `crdVersion`, `cleanupDebounceTime`
+* Simplify `policyPriorities`, `policyPriorities.enabled` was removed along with the watch feature
+    * Priority determined mainly over severity
+* Add `sources` filter to target configurations
+* Improved `NetworkPolicy` configuration for all components
+* Metrics now an optional feature
+* Each component expose a single Port `8080`
+
+See [Migration Docs](https://kyverno.github.io/policy-reporter/guide/05-migration) for details
+
+## Policy Reporter
+* modular functions for separate activation/deactivation
+    * REST API
+    * Metrics API
+    * Target pushes
+* PolicyReports are now stored in an internal SQLite
+* extended REST API based on the new SQLite DB for filters and grouping of data
+* metrics API is now optional
+* metrics and REST API using the same HTTP Server (were separated before)
+* improved CRD watch logic with Kubernetes client informer
+* `Yandex` changed to a general `S3` target.
+
+## Policy Reporter UI
+* Rewrite with NuxtJS
+* Simplified Proxy
+* Improved SPA file handling
+
+## Policy Reporter Kyverno Plugin
+* modular functions for separate activation/deactivation
+    * REST API
+    * Metrics API
+* metrics and REST API using the same HTTP Server (were separated before)
+* improved CRD watch logic with Kubernetes client informer
+
+# 1.12.6
+* Update Go Base Image for all Components
+    * Policy Reporter [[#90](https://github.com/kyverno/policy-reporter-ui/pull/90) by [fjogeleit](https://github.com/fjogeleit)]
+    * Policy Reporter UI [[#11](https://github.com/kyverno/policy-reporter-ui/pull/11) by [realshuting](https://github.com/realshuting)]
+    * Policy Reporter Kyverno Plugin [[#9](https://github.com/kyverno/policy-reporter-ui/pull/9) by [realshuting](https://github.com/realshuting)]
+
+# 1.12.5
+* Dependency Update
+
+# 1.12.4
+* Fix policy-reporter-ui ServiceName function [[#87](https://github.com/kyverno/policy-reporter/pull/87) by [m-yosefpor](https://github.com/m-yosefpor)]
+
 # 1.12.3
 * Fix policy-reporter-ui backend name [[#85](https://github.com/kyverno/policy-reporter/pull/85) by [m-yosefpor](https://github.com/m-yosefpor)]
 
